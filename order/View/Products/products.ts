@@ -7,14 +7,16 @@ import { Beer } from "../../Infra/Category/beer"
 
 
 const route = Router()
-const product = new Product()
+export const product = new Product()
 
 route.get('/product', (req: Request, res: Response) => {
     res.json(product.getProducts())
 })
+
 route.get('/product/:id', (req: Request, res: Response) => {
     res.json(product.getProductById(req.params.id))
 })
+
 route.post('/product/cigar', (req: Request, res: Response) => {
     const { price, description } = req.body
     const newCigar = new Cigar(description, price)
@@ -22,12 +24,14 @@ route.post('/product/cigar', (req: Request, res: Response) => {
     res.json(newCigar)
 })
 
+
 route.post('/product/water', (req: Request, res: Response) => {
     const { price, description } = req.body
     const newWater = new Water(description, price)
     product.addidProduct(newWater)
     res.json(newWater)
 })
+
 
 route.post('/product/eletronics', (req: Request, res: Response) => {
     const { price, description } = req.body
